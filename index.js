@@ -1,5 +1,5 @@
 let player = {
-    name: "Per",
+    name: "Bankroll",
     chips: 200
 }
 
@@ -27,12 +27,18 @@ function getRandomCard() {
 }
 
 function startGame() {
-    isAlive = true
-    let firstCard = getRandomCard()
-    let secondCard = getRandomCard()
-    cards = [firstCard, secondCard]
-    sum = firstCard + secondCard
-    renderGame()
+    if (player.chips >= 10) {
+        isAlive = true
+        hasBlackJack = false
+        player.chips -= 10
+        let firstCard = getRandomCard()
+        let secondCard = getRandomCard()
+        cards = [firstCard, secondCard]
+        sum = firstCard + secondCard
+        renderGame()
+    } else {
+        messageEl.textContent = "You're out of money!"
+    }
 }
 
 function renderGame() {
@@ -40,23 +46,24 @@ function renderGame() {
     for (let i = 0; i < cards.length; i++) {
         cardsEl.textContent += cards[i] + " "
     }
-    
     sumEl.textContent = "Sum: " + sum
     if (sum <= 20) {
         message = "Do you want to draw a new card?"
     } else if (sum === 21) {
         message = "You've got Blackjack!"
         hasBlackJack = true
+        player.chips += 15
     } else {
         message = "You're out of the game!"
         isAlive = false
     }
     messageEl.textContent = message
+    playerEl.textContent = player.name + ": $" + player.chips
 }
 
 
 function newCard() {
-    if (isAlive === true && hasBlackJack === false) {
+    if (isAlive === true && hasBlackJack === false && player.chips >= 25 ) {
         let card = getRandomCard()
         sum += card
         cards.push(card)
