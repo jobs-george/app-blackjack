@@ -9,13 +9,14 @@ body {
     background-image: url("images/table.png");
     background-size: cover;
     margin: 0 auto;
-    padding: 20px;
+    padding: 1em;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
 h1 {
-    color: goldenrod;
+    color: white;
+    text-shadow: 2px 2px black;
 }
 
 #message-el {
@@ -23,14 +24,18 @@ h1 {
 }
 
 button {
-    color: #016f32;
     width: 150px;
-    background: goldenrod;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    background: #fff100;
+    color: black;
+    padding: 0.5em 0;
     font-weight: bold;
     border: none;
     border-radius: 2px;
-    margin-bottom: 2px;
-    margin-top: 2px;
+    margin: 1em auto;
+    display: block;
+}
+
+#btn {
+    display: flex;
+    flex-direction: column;
 }
